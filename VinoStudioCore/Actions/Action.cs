@@ -1,4 +1,4 @@
-﻿namespace VinoStudioCore
+﻿namespace VinoStudioCore.Actions
 {
     public interface IAction
     {
