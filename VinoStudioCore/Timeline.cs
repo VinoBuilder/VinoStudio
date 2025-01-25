@@ -17,34 +17,32 @@ namespace VinoStudioCore
             if (!actions.Any())
                 return;
 
-            // Track the total duration of all tasks + spaces
             var totalDuration = actions.Keys.Last() + actions.Values.Last().Max(a => a.Duration);
-
             var stopwatch = Stopwatch.StartNew();
 
-            while (stopwatch.Elapsed <= totalDuration)
+            while (stopwatch.Elapsed <= totalDuration || actions.Any())
             {
                 var currentTime = stopwatch.Elapsed;
 
                 // Execute actions scheduled at the current time
-                foreach (var timelineAction in actions.Where(a => a.Key <= currentTime))
+                foreach (var timing in actions.Keys.Where(k => k <= currentTime).ToList())
                 {
-                    var timing = timelineAction.Key;
-                    var actionsToExecute = timelineAction.Value;
+                    var actionsToExecute = actions[timing];
 
                     // Start tasks in parallel
                     var tasks = actionsToExecute.Select(action => action.StartExecute()).ToArray();
                     await Task.WhenAll(tasks);
 
-                    // Remove the executed actions to prevent re-execution
+                    // Mark actions as executed
                     actions.Remove(timing);
                 }
 
-                // Brief delay to prevent busy-waiting
+                // Prevent busy-waiting
                 await Task.Delay(10);
             }
 
             stopwatch.Stop();
         }
+
     }
 }
