@@ -6,6 +6,8 @@ namespace VinoStudioCore
     public class Timeline
     {
         private readonly SortedDictionary<TimeSpan, Action[]> actions = [];
+        private Action[] CurrentActions = [];
+        private bool CompleteAllActionsRequested = false;
 
         public void AddActions(TimeSpan timing, Action[] actionsToAdd)
         {
@@ -20,29 +22,57 @@ namespace VinoStudioCore
             var totalDuration = actions.Keys.Last() + actions.Values.Last().Max(a => a.Duration);
             var stopwatch = Stopwatch.StartNew();
 
-            while (stopwatch.Elapsed <= totalDuration || actions.Any())
+            var currentTiming = stopwatch.Elapsed;
+
+            while (currentTiming <= totalDuration || actions.Any())
             {
-                var currentTime = stopwatch.Elapsed;
+                if (CompleteAllActionsRequested)
+                {
+                    // Finish all remaining actions immediately
+                    await CompleteAllActions();
+                    break; // Exit the loop after completing all actions
+                }
 
                 // Execute actions scheduled at the current time
-                foreach (var timing in actions.Keys.Where(k => k <= currentTime).ToList())
+                foreach (var timing in actions.Keys.Where(k => k <= currentTiming).ToList())
                 {
-                    var actionsToExecute = actions[timing];
-
-                    // Start tasks in parallel
-                    var tasks = actionsToExecute.Select(action => action.StartExecute()).ToArray();
-                    await Task.WhenAll(tasks);
-
+                    currentTiming = timing;
+                    CurrentActions = actions[timing];
+                    var tasks = CurrentActions.Select(action => action.StartExecute()).ToArray();
+                    Task.WhenAll(tasks);
                     // Mark actions as executed
                     actions.Remove(timing);
                 }
-
-                // Prevent busy-waiting
+                currentTiming = stopwatch.Elapsed;
                 await Task.Delay(10);
             }
 
             stopwatch.Stop();
         }
 
+        public async Task CompleteAllActionsRequest()
+        {
+            CompleteAllActionsRequested = true;
+        }
+
+        private async Task CompleteAllActions()
+        {
+            // Stop all currently running actions
+            foreach (var currentAction in CurrentActions)
+            {
+                await currentAction.StopExecute(); // Ensures actions complete cleanly
+            }
+
+            // Execute remaining actions in parallel
+            var allRemainingTasks = actions.Values
+                .SelectMany(actionArray => actionArray)
+                .Select(action => action.StopExecute())
+                .ToArray();
+
+            await Task.WhenAll(allRemainingTasks);
+
+            // Clear all pending actions
+            actions.Clear();
+        }
     }
 }

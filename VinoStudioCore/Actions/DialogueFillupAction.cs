@@ -8,6 +8,7 @@ namespace VinoStudioCore.Actions
     {
         private readonly string value = "";
         private readonly IDialogueComponent component;
+        private CancellationTokenSource cancellationTokenSource;
 
         public static DialogueFillupAction Create(string value, TimeSpan duration, IDialogueComponent component)
         {
@@ -21,6 +22,9 @@ namespace VinoStudioCore.Actions
 
         public override async Task StartExecute()
         {
+            cancellationTokenSource = new CancellationTokenSource();
+            var token = cancellationTokenSource.Token;
+
             if (Duration == TimeSpan.Zero)
             {
                 await component.SetText(value);
@@ -35,16 +39,27 @@ namespace VinoStudioCore.Actions
 
                 for (int i = 0; i < totalCharacters; i += charactersPerInterval)
                 {
+                    if (token.IsCancellationRequested) // Break if cancellation is requested
+                        break;
+
                     sb.Append(value.Substring(i, Math.Min(charactersPerInterval, totalCharacters - i)));
                     await component.SetText(sb.ToString());
-                    await Task.Delay(intervalMilliseconds);
+                    try
+                    {
+                        await Task.Delay(intervalMilliseconds, token); // Cancelable delay
+                    }
+                    catch (TaskCanceledException)
+                    {
+                        break; // Break loop on cancellation
+                    }
                 }
             }
         }
 
         public override async Task StopExecute()
         {
-            await component.SetText(value);
+            cancellationTokenSource?.Cancel();
+            await component.SetText(value); // Immediately set the final text
         }
 
         private DialogueFillupAction(string value, TimeSpan duration, IDialogueComponent component) : base(duration)
