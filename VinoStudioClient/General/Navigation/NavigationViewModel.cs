@@ -9,8 +9,7 @@ namespace VinoStudioClient.General.Navigation
     public partial class NavigationViewModel : ViewModelBase
     {
         public ObservableCollection<string> Sections { get; private set; } = [
-            "Layout",
-            "Other"
+            "Layout"
         ];
 
         [ObservableProperty]
