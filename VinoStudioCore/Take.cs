@@ -5,7 +5,8 @@ namespace VinoStudioCore
     public class Take
     {
         public int Id { get; set; }
-        public int CurrentTimelineID { get; private set; }
+        public int CurrentTimelineIndex { get; private set; } = 0;
+        public int? CurrentSequenceId { get; private set; } = null;
         public string Name { get; private set; } = string.Empty;
 
         public Take(int id, string name)
@@ -14,16 +15,28 @@ namespace VinoStudioCore
             Name = name;
         }
 
-        public async Task<Timeline> SetCurrentTimeline(int id, TimelineStore timelineStore)
+        public async Task<Timeline?> SwitchToNextTimeline(Sequence sequence, SequenceStore store)
         {
-            Timeline? timeline = await timelineStore.GetTimeline(id);
-            if (timeline == null) 
+            if(sequence.AbleToSwitchToNextTimeline(CurrentTimelineIndex))
             {
-                throw new Exception($"Timeline with id: [${id}] does not exist!");
-            }
+                CurrentTimelineIndex++;
+                return sequence.GetTimeline(CurrentTimelineIndex);
 
-            CurrentTimelineID = id;
-            return timeline;
+            }
+            else if(sequence.NextSequenceId != null)
+            {
+                Sequence nextSequence = await store.GetSequence(sequence.NextSequenceId);
+                if(nextSequence == null)
+                {
+                    throw new Exception("Sequence with this id was not found!");
+                }
+
+                CurrentTimelineIndex = 0;
+                CurrentSequenceId = nextSequence.Id;
+
+                return nextSequence.GetTimeline(CurrentTimelineIndex);
+            }
+            return null;
         }
     }
 }

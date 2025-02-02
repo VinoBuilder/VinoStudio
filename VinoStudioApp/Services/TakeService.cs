@@ -1,6 +1,5 @@
 ﻿using VinoStudioApp.DTOs;
 using VinoStudioCore.Stores;
-using VinoStudioCore.Triggers.TakeTriggers;
 
 namespace VinoStudioCore.Services
 {
@@ -16,27 +15,26 @@ namespace VinoStudioCore.Services
 
         public async Task LoadTake(int takeID)
         {
-            LoadTakeTrigger trigger = new(takeID, takesStore);
-            await trigger.Execute();
-            CurrentlyLoadedTake = trigger.LoadedTake;
+            Take take = await takesStore.GetTake(takeID);
+            CurrentlyLoadedTake = take;
         }
 
         public async Task CreateTake(int takeID, string takeName)
         {
-            CreateTakeTrigger trigger = new (takesStore, takeID, takeName);
-            await trigger.Execute();
-            CurrentlyLoadedTake = trigger.CreatedTake;
+            Take newTake = new Take(takeID, takeName);
+            await takesStore.SaveTake(newTake);
+            CurrentlyLoadedTake = newTake;
         }
 
         public async Task<IEnumerable<TakeDTO>> GetAllTakes()
         {
-            GetAllTakesTrigger trigger = new(takesStore);
-            await trigger.Execute();
-            if(trigger.AllTakes == null)
+            var takes = await takesStore.GetAllTakes();
+            if (takes == null)
             {
                 throw new Exception("Either all takes were not loaded or failed to load them.");
             }
-            return trigger.AllTakes.Select(take => new TakeDTO(take.Id, take.Name));
+
+            return takes.Select(take => new TakeDTO(take.Id, take.Name));
         }
     }
 }
