@@ -1,5 +1,4 @@
 ﻿using VinoStudioCore;
-using VinoStudioCore.Services;
 using VinoStudioCore.Stores;
 
 namespace VinoStudioApp.Services

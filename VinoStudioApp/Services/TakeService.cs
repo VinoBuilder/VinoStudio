@@ -1,7 +1,8 @@
 ﻿using VinoStudioApp.DTOs;
+using VinoStudioCore;
 using VinoStudioCore.Stores;
 
-namespace VinoStudioCore.Services
+namespace VinoStudioApp.Services
 {
     public class TakeService
     {

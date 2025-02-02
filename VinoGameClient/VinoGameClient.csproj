@@ -19,9 +19,10 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VinoStudioCore\VinoStudioCore.csproj" />
+    <ProjectReference Include="..\VinoStudioApp\VinoStudioApp.csproj" />
   </ItemGroup>
 </Project>
