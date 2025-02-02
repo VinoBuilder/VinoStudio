@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinoStudioApp", "VinoStudio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinoGameConsoleClient", "VinoStudioConsoleClient\VinoGameConsoleClient.csproj", "{5AA5E170-EED9-4FA9-9496-016E055C64B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VinoStudioClient", "VinoStudioClient\VinoStudioClient.csproj", "{724E2314-8FD0-4176-BD5C-89822F447CD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5AA5E170-EED9-4FA9-9496-016E055C64B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AA5E170-EED9-4FA9-9496-016E055C64B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AA5E170-EED9-4FA9-9496-016E055C64B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724E2314-8FD0-4176-BD5C-89822F447CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724E2314-8FD0-4176-BD5C-89822F447CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724E2314-8FD0-4176-BD5C-89822F447CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724E2314-8FD0-4176-BD5C-89822F447CD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
