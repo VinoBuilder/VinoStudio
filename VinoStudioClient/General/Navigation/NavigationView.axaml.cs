@@ -1,8 +1,8 @@
-using Avalonia;
+using System.Diagnostics;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using Avalonia.Media;
 
-namespace VinoStudioClient;
+namespace VinoStudioClient.General.Navigation;
 
 public partial class NavigationView : UserControl
 {

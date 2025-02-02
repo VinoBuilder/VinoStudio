@@ -1,7 +1,11 @@
-﻿namespace VinoStudioClient.Base
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using VinoStudioClient.General.Navigation;
+
+namespace VinoStudioClient.Base
 {
-    public partial class MainWindowViewModel : ViewModelBase
+    internal partial class MainWindowViewModel : ViewModelBase    
     {
-        public string Greeting { get; } = "Welcome to Avalonia!";
+        [ObservableProperty]
+        private NavigationViewModel navigationViewModel = new();
     }
 }

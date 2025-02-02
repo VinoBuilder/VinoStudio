@@ -5,15 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="VinoStudioClient.Views.MainWindow"
+		Background="LightGray"
+		Padding="5"
         x:DataType="base:MainWindowViewModel"
+		xmlns:navigation="clr-namespace:VinoStudioClient.General.Navigation"
+		xmlns:section="clr-namespace:VinoStudioClient.General.Section"
         Title="VinoStudioClient">
-
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <base:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="20*" MinWidth="200" />
+			<ColumnDefinition Width="1" />
+			<ColumnDefinition Width="80*" />
+		</Grid.ColumnDefinitions>
+		<navigation:NavigationView x:Name="Navigation" Grid.Column="0" DataContext="{Binding NavigationViewModel}" />
+		<GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="8">
+			<GridSplitter.Template>
+				<ControlTemplate TargetType="{x:Type GridSplitter}">
+					<Grid>
+						<Button Content="⁞" VerticalAlignment="Stretch" />
+						<Rectangle Fill="#00FFFFFF" />
+					</Grid>
+				</ControlTemplate>
+			</GridSplitter.Template>
+		</GridSplitter>
+		<section:SectionView DataContext="{Binding}" Grid.Column="2" Padding="5" />
+	</Grid>
 </Window>

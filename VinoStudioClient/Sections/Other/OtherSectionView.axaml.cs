@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace VinoStudioClient;
 
-public partial class BodyView : UserControl
+public partial class OtherSectionView : UserControl
 {
-    public BodyView()
+    public OtherSectionView()
     {
         InitializeComponent();
     }
