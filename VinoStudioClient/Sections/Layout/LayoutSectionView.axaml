@@ -3,6 +3,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="VinoStudioClient.LayoutSectionView">
-  Layout section
+			 xmlns:vm="using:VinoStudioClient.Sections.Layout"
+			 x:Class="VinoStudioClient.Sections.Layout.LayoutSectionView"
+			 x:DataType="vm:LayoutSectionViewModel"
+			 xmlns:placer="clr-namespace:VinoStudioClient.Sections.Layout.ComponentPlacer"
+			 xmlns:selector="clr-namespace:VinoStudioClient.Sections.Layout.ComponentSelector">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="80*" />
+			<ColumnDefinition Width="1" />
+			<ColumnDefinition Width="20*" MinWidth="300" />
+		</Grid.ColumnDefinitions>
+		<selector:ComponentSelectorSubview Grid.Column="0" />
+		<GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="8">
+			<GridSplitter.Template>
+				<ControlTemplate TargetType="{x:Type GridSplitter}">
+					<Grid>
+						<Button Content="⁞" VerticalAlignment="Stretch" />
+						<Rectangle Fill="#00FFFFFF" />
+					</Grid>
+				</ControlTemplate>
+			</GridSplitter.Template>
+		</GridSplitter>
+		<placer:ComponentPlacerSubview Grid.Column="2" Padding="5" />
+	</Grid>
 </UserControl>

@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace VinoStudioClient;
+namespace VinoStudioClient.Sections.Layout.ComponentSelector;
 
 public partial class ComponentSelectorSubview : UserControl
 {

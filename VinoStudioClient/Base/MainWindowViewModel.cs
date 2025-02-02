@@ -8,8 +8,5 @@ namespace VinoStudioClient.Base
     {
         [ObservableProperty]
         private NavigationViewModel navigationViewModel = new();
-
-        [ObservableProperty]
-        private SectionViewModel sectionViewModel = new();
     }
 }

@@ -6,5 +6,5 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="VinoStudioClient.General.Section.SectionView"
 			 x:DataType="base:MainWindowViewModel">
-	<TransitioningContentControl Content="{Binding NavigationViewModel.SelectedSection}" />
+	<TransitioningContentControl Content="{Binding NavigationViewModel.SelectedSection.ViewModel}" />
 </UserControl>

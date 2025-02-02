@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace VinoStudioClient;
+namespace VinoStudioClient.Sections.Layout;
 
 public partial class LayoutSectionView : UserControl
 {

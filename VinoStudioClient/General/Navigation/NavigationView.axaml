@@ -13,7 +13,7 @@
              SelectedItem="{Binding SelectedSection, Mode=TwoWay}">
 		<ListBox.ItemTemplate>
 			<DataTemplate>
-				<TextBlock Text="{Binding}" />
+				<TextBlock Text="{Binding Name}" />
 			</DataTemplate>
 		</ListBox.ItemTemplate>
 	</ListBox>
