@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:VinoStudioClient.Sections.Layout.ComponentPlacer.Components.Dialogue"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:DataType="vm:DialogueViewModel"
+             x:Class="VinoStudioClient.Sections.Layout.ComponentPlacer.Components.Dialogue.DialogueView">
+	<Border Background="{Binding Background}" Padding="5">
+		<StackPanel>
+			<!-- Hero Name Block -->
+			<Border Background="#333"
+                    CornerRadius="4"
+                    Padding="4"
+                    HorizontalAlignment="Left">
+				<TextBlock Text="Hero Name"
+                           FontWeight="Bold"
+                           Foreground="LightBlue"
+                           FontSize="14"/>
+			</Border>
+
+			<!-- Dialogue Box -->
+			<Border Height="80"
+                    Opacity="0.8"
+                    Background="#222"
+                    CornerRadius="6"
+                    Padding="10">
+				<TextBlock Foreground="Yellow"
+                           FontSize="16"/>
+			</Border>
+		</StackPanel>
+	</Border>
+</UserControl>

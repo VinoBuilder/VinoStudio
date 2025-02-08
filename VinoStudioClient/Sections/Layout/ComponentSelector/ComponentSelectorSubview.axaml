@@ -2,7 +2,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:previewDialogue="clr-namespace:VinoStudioClient.Sections.Layout.ComponentSelector.PreviewComponents.Dialogue"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="VinoStudioClient.Sections.Layout.ComponentSelector.ComponentSelectorSubview">
-  Welcome to Avalonia!
+
+	<ScrollViewer VerticalScrollBarVisibility="Auto" Name="DraggableScroller">
+		<StackPanel>
+			<Border Background="#EEE" CornerRadius="5" Padding="10" Margin="5">
+				<TextBlock Text="Component Selector"
+						   TextAlignment="Center"
+						   FontWeight="Bold"
+						   FontSize="18"
+						   Foreground="Black"/>
+			</Border>
+			
+				<StackPanel Spacing="10" Margin="5">
+					<Border BorderBrush="#444"
+							BorderThickness="2"
+							Padding="10"
+							CornerRadius="8"
+							Background="Red"
+							Name="DialoguePreview">
+						<StackPanel>
+							<TextBlock Text="Dialogue"
+									   FontWeight="SemiBold"
+									   FontSize="14"
+									   Foreground="#444"
+									   TextAlignment="Right"/>
+							<previewDialogue:PreviewDialogueView />
+						</StackPanel>
+					</Border>
+
+				</StackPanel>
+
+				<StackPanel Spacing="10" Margin="5">
+					<Border BorderBrush="#444"
+							BorderThickness="2"
+							Padding="10"
+							CornerRadius="8"
+							Background="Red"
+							Name="Temp">
+						<StackPanel>
+							<TextBlock Text="Dialogue"
+									   FontWeight="SemiBold"
+									   FontSize="14"
+									   Foreground="#444"
+									   TextAlignment="Right"/>
+							<previewDialogue:PreviewDialogueView />
+						</StackPanel>
+					</Border>
+
+				</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
 </UserControl>

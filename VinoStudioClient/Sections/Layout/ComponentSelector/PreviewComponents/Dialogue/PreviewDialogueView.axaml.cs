@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace VinoStudioClient.Sections.Layout.ComponentPlacer.PreviewComponents.Dialogue;
+namespace VinoStudioClient.Sections.Layout.ComponentSelector.PreviewComponents.Dialogue;
 
 public partial class PreviewDialogueView : UserControl
 {

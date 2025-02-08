@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="using:VinoStudioClient.Sections.Layout.ComponentSelector.PreviewComponents.Dialogue"
+			 xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+			 xmlns:drag="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions.DragAndDrop"
+			 x:DataType="vm:PreviewDialogueViewModel"
+             x:Class="VinoStudioClient.Sections.Layout.ComponentSelector.PreviewComponents.Dialogue.PreviewDialogueView">
+
+	<Border Background="Transparent" Padding="5">
+		<StackPanel>
+			<!-- Hero Name Block -->
+			<Border Background="#333"
+                    CornerRadius="4"
+                    Padding="4"
+                    HorizontalAlignment="Left">
+				<TextBlock Text="Hero Name"
+                           FontWeight="Bold"
+                           Foreground="LightBlue"
+                           FontSize="14"/>
+			</Border>
+
+			<!-- Dialogue Box -->
+			<Border Height="80"
+                    Opacity="0.8"
+                    Background="#222"
+                    CornerRadius="6"
+                    Padding="10">
+				<TextBlock Text="Sample Dialogue Preview"
+                           Foreground="Yellow"
+                           FontSize="16"/>
+			</Border>
+		</StackPanel>
+	</Border>
+
+</UserControl>

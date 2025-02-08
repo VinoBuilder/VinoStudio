@@ -6,15 +6,15 @@
 			 xmlns:vm="using:VinoStudioClient.Sections.Layout"
 			 x:Class="VinoStudioClient.Sections.Layout.LayoutSectionView"
 			 x:DataType="vm:LayoutSectionViewModel"
-			 xmlns:placer="clr-namespace:VinoStudioClient.Sections.Layout.ComponentPlacer"
-			 xmlns:selector="clr-namespace:VinoStudioClient.Sections.Layout.ComponentSelector">
+			 xmlns:selector="clr-namespace:VinoStudioClient.Sections.Layout.ComponentSelector"
+			 xmlns:placer="clr-namespace:VinoStudioClient.Sections.Layout.ComponentPlacer">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="80*" />
 			<ColumnDefinition Width="1" />
 			<ColumnDefinition Width="20*" MinWidth="300" />
 		</Grid.ColumnDefinitions>
-		<selector:ComponentSelectorSubview Grid.Column="0" />
+		<placer:ComponentPlacerSubview Background="Black" Grid.Column="0" />
 		<GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="8">
 			<GridSplitter.Template>
 				<ControlTemplate TargetType="{x:Type GridSplitter}">
@@ -25,6 +25,6 @@
 				</ControlTemplate>
 			</GridSplitter.Template>
 		</GridSplitter>
-		<placer:ComponentPlacerSubview Grid.Column="2" Padding="5" />
+		<selector:ComponentSelectorSubview Grid.Column="2" />
 	</Grid>
 </UserControl>

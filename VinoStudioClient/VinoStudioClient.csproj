@@ -19,6 +19,8 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.2.0.8" />
+    <PackageReference Include="Avalonia.Xaml.Interactions.DragAndDrop" Version="11.2.0.8" />
+    <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.2.0.8" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
   </ItemGroup>
 
@@ -30,9 +32,11 @@
     <Compile Update="General\Section\SectionView.axaml.cs">
       <DependentUpon>SectionView.axaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Components\" />
+    <Compile Update="Sections\Layout\ComponentPlacer\ComponentPlacerSubview.axaml.cs">
+      <DependentUpon>ComponentPlacerSubview.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Sections\Layout\ComponentSelector\ComponentSelectorSubview.axaml.cs">
+      <DependentUpon>ComponentSelectorSubview.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
