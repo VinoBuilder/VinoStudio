@@ -25,6 +25,34 @@
 				</ControlTemplate>
 			</GridSplitter.Template>
 		</GridSplitter>
-		<selector:ComponentSelectorSubview Grid.Column="2" />
+		<StackPanel Grid.Column="2" Margin="5">
+			<ListBox ItemsSource="{Binding Subviews}"
+         Padding="10,0,10,0"
+         Background="LightGray"
+         SelectedItem="{Binding SelectedSubview, Mode=TwoWay}"
+         BorderThickness="0">
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<UniformGrid Columns="{Binding Items.Count, RelativeSource={RelativeSource AncestorType=ListBox}}"
+									 HorizontalAlignment="Stretch"/>
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid HorizontalAlignment="Stretch">
+							<TextBlock Text="{Binding Name}"
+									   HorizontalAlignment="Stretch"
+									   VerticalAlignment="Center"
+									   TextAlignment="Center"
+									    />
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+
+			<Border Margin="10,10,0,10">
+				<TransitioningContentControl Content="{Binding SelectedSubview.ViewModel}" />
+			</Border>
+		</StackPanel>
 	</Grid>
 </UserControl>

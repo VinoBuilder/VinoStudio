@@ -10,7 +10,9 @@ namespace VinoStudioClient
         public Control? Build(object? param)
         {
             if (param is null)
+            {
                 return null;
+            }
 
             var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
             var type = Type.GetType(name);
@@ -20,7 +22,10 @@ namespace VinoStudioClient
                 return (Control)Activator.CreateInstance(type)!;
             }
 
-            return new TextBlock { Text = "Not Found: " + name };
+            var subviewVmNname = param.GetType().FullName!.Replace("ViewModel", "Subview", StringComparison.Ordinal);
+            var subviewType = Type.GetType(subviewVmNname);
+
+            return subviewType != null ? (Control)Activator.CreateInstance(subviewType)! : new TextBlock { Text = "Not Found: " + name };
         }
 
         public bool Match(object? data)
