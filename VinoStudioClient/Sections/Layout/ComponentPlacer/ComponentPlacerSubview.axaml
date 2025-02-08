@@ -22,7 +22,7 @@
 
 		<!-- Correct positioning using TranslateTransform -->
 		<ItemsControl.ItemTemplate>
-			<DataTemplate>
+			<DataTemplate DataType="dialogue:DialogueViewModel">
 				<ContentPresenter>
 					<ContentPresenter.Content>
 						<dialogue:DialogueView DataContext="{Binding}" />
